@@ -1,145 +1,247 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="style.css">
 <script>
-    
+
     function changePage() {
         console.log(location.hash)
-        
+        var contentPages = document.getElementsByClassName("main")
+        for (let i = 0; i < contentPages.length; i++) {
+            contentPages[i].style.display = 'none';
+        }
+        if (location.hash === undefined) {
+            document.getElementById('main').style.display = 'flex';
+        }
+        if (document.getElementById(location.hash.replace('#', ''))) {
+            document.getElementById(location.hash.replace('#', '')).style.display = 'flex';
+        }
+        else {
+            document.getElementById('main').style.display = 'flex';
+        }
+        let anchors = document.getElementsByTagName("a")
+
+        for (let i = 0; i < anchors.length; i++) {
+            anchors[i].classList.remove("currentHash")
+        }
+        let anchor = document.querySelector(`a[href="${location.hash}"]`);
+        if (anchor) {
+            anchor.classList.add("currentHash")
+        }
+        else {
+            let anchor = document.querySelector(`a[href="#main`);
+            anchor.classList.add("currentHash")
+        }
+
+
     }
     window.onhashchange = changePage;
+
 </script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-    *{
-    margin:0;
-    padding:0;
+    * {
+        margin: 0;
+        padding: 0;
     }
-    body,html{
-        height:100vh;
-        width:100%;
-        padding:0;
-        margin:0;
-        color:white;
-        background-color:black;
+
+    body,
+    html {
+        height: 100vh;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        color: white;
+        background-color: black;
         font-size: 1em;
-        overflow:scroll;
-        align-content:center;
+        overflow: scroll;
+        align-content: center;
     }
-    
+
     .container {
-        margin:auto;
-        max-width: 700px;
-        width:50%;
-        background-color:#271527;
-        border:3px outset white;
-        padding:10px;
-        
         display: flex;
         flex-wrap: nowrap;
         flex-direction: row;
     }
-    
-    .container > div {
+
+    .container>div {
         float: left;
-        
+
     }
+
     .left {
-        width:200px;
+        width: 200px;
         padding: 15px;
         float: left;
         background-color: #5f4559;
-        border-radius:0px;
+        border-radius: 0px;
         border: 3px outset #5f4559;
-        text-align:center;
+        text-align: center;
     }
+
     ul li {
         padding: 10px;
         list-style: none;
         position: relative;
         list-style-position: outside;
-        text-align:left;
+        text-align: left;
     }
-    ul li::before{
-        content:"🞂";
+
+    ul li::before {
+        content: "🞂";
         position: absolute;
-        left:-10px;
-        top:7px
+        left: -10px;
+        top: 7px
     }
+
     .pfp {
-        border-radius:50%;
-        width:50%
+        border-radius: 50%;
+        width: 50%
     }
+
     .main {
-        margin:10px;
+        margin: 10px;
         float: left;
-        padding:5px;
-        line-height:175%;
-        width:auto;
+        padding: 5px;
+        line-height: 175%;
+        flex-grow: 1;
+        flex-basis: 0;
         overflow-wrap: break-word;
-        display:flex;
-        flex-direction:column;
+        display: flex;
+        flex-direction: column;
     }
+
     .socials {
-        
-        display:flex;
-        float:left;
-        width:auto;
+
+        display: flex;
+        float: left;
+        width: auto;
         flex-direction: row;
         justify-content: space-evenly;
     }
-    .socials > div {
-        width:fit-content;
+
+    .socials>div {
+        width: fit-content;
     }
+
     a {
-        color:#eb9ed4
+        color: #eb9ed4
     }
+
     a:visited {
-        color:#eb9ed4
+        color: #eb9ed4
     }
+
+    .currentHash {
+        color: #ad5cf0
+    }
+
+    .currentHash:visited {
+        color: #ad5cf0
+    }
+
+    .containerer {
+        margin: auto;
+        max-width: 700px;
+        width: 50%;
+        background-color: #271527;
+        border: 3px outset white;
+        padding: 10px;
+
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+    }
+
     @media screen and (max-width: 900px) {
         .left {
-        width:auto /* The width is 100%, when the viewport is 800px or smaller */
-      }
-      .container {
-        flex-direction: column;
-      }
+            width: auto
+                /* The width is 100%, when the viewport is 800px or smaller */
+        }
+
+        .container {
+            flex-direction: column;
+        }
     }
-    </style>
+
+    abbr {
+        font-style: italic;
+    }
+
+    .footer {
+        gap:5px;
+        margin:10px;
+        flex-grow: 1;
+        flex-shrink: 0;
+        display:flex;
+        flex-wrap:wrap;
+        justify-content: center;
+    }
+</style>
 
 
 <head>
     <title>ash's site :3</title>
 </head>
-<body>
-    <div class="background">
-    </div>
 
-    <div class="container">
-        <div class="left">
-            <img src="assets/ash_icon.png" class="pfp">
-            <h2>ash's domain!</h2>
-            <br>
-            <h3>navigation</h3>
-            <ul>
-                <li>
-                    <a href="#main">main</a>
-                </li>
-                <li>
-                    <a href="#aboutme">about me</a>
-                </li>
-            </ul>
-        </div>
-        <div class="main" id="main">
-            <p>hiii! my name is ash! (or ashley, or ashurii)</p>
-            <p>i'm just some lil kitty on the internet who likes programming n stuff!!!</p>
-            <p>i rly like games and art and stuff</p>
-            <p>here's the links to my socials!</p>
-            <div class="socials">
-                <a href="https://bsky.app/profile/ashurii.xyz">bluesky</a><a href="https://steamcommunity.com/id/giko_arts/">steam</a><a href="https://www.youtube.com/@ash_urii">youtube</a>
+<body onload="changePage()">
+
+    <div class="containerer">
+        
+        <div class="container">
+
+            <div class="left">
+                <img src="assets/ash_icon.png" class="pfp">
+                <h2>ash's domain!</h2>
+                <br>
+                <h3>navigation</h3>
+                <ul>
+                    <li>
+                        <a href="#main">main</a>
+                    </li>
+                    <li>
+                        <a href="#aboutme">about me</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="main" id="main">
+                <h2>welcome to my lil page!! :3</h2>
+                <p>hiii! my name is ash! (or ashley, or ashurii)</p>
+                <p>i'm just some lil kitty on the internet who likes programming n stuff!!!</p>
+                <p>i rly like games and art and stuff</p>
+                <p>here's the links to my socials!</p>
+                <div class="socials">
+                    <a href="https://bsky.app/profile/ashurii.xyz">bluesky</a><a
+                        href="https://steamcommunity.com/id/giko_arts/">steam</a><a
+                        href="https://www.youtube.com/@ash_urii">youtube</a>
+                </div>
+            </div>
+            <div class="main" id="aboutme" style="display:none">
+                <h2>about me</h2>
+                <p>hai, as you are definitely aware by now my name is ash! ^_^</p>
+                <p>i'm transfem, and i go by she/her pronouns!</p>
+                <p>i'm an artist, animator, programmer (debatably), and a do-er of many things in my spare time</p>
+                <p>my favorite game at the moment is Valve's <abbr title="Team Fortress 2"">TF2</abbr>, and my main class is sniper!</p>
+                <p></p>
             </div>
         </div>
+        <div class=" footer">
+            <img src="assets/bob.gif">
+            <img src="assets/cocksuckingfaggot.gif">
+            <img src="assets/cssdif.gif">
+            <img src="assets/fckfb.gif">
+            <img src="assets/fckgoogle.gif">
+            <a href="https://github.io"><img src="assets/gh-pages-bo.gif"></a>
+            <img src="assets/hello_kitty.gif">
+            <img src="assets/wing1.gif">
+            <img src="assets/trans.png">
+            <img src="assets/pan.png">
+            <img src="assets/trans.gif">
+            <img src="assets/trans2.gif">
+            <a href="https://beenibroh.itch.io/vibinvendetta"><img src="assets/playvv.gif"></a>
+            <img src="assets/anydamn.gif">
+        </div>
+
     </div>
-    
+
 </body>
