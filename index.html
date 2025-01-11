@@ -1,40 +1,145 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="style.css">
+<script>
+    
+    function changePage() {
+        console.log(location.hash)
+        
+    }
+    window.onhashchange = changePage;
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
     *{
     margin:0;
     padding:0;
     }
-    .small {
-        font-size:4em;
-    }
-    .title {
-        font-size:10em;
-    }
     body,html{
-        height:100%;
+        height:100vh;
         width:100%;
         padding:0;
         margin:0;
+        color:white;
+        background-color:black;
+        font-size: 1em;
+        overflow:scroll;
+        align-content:center;
     }
-    div.content {
-        margin: auto;
-        height: 100%;
+    
+    .container {
+        margin:auto;
+        max-width: 700px;
+        width:50%;
+        background-color:#271527;
+        border:3px outset white;
+        padding:10px;
+        
         display: flex;
-        justify-content: center;
-        align-items: center;
+        flex-wrap: nowrap;
+        flex-direction: row;
+    }
+    
+    .container > div {
+        float: left;
+        
+    }
+    .left {
+        width:200px;
+        padding: 15px;
+        float: left;
+        background-color: #5f4559;
+        border-radius:0px;
+        border: 3px outset #5f4559;
         text-align:center;
-}
-</style>
+    }
+    ul li {
+        padding: 10px;
+        list-style: none;
+        position: relative;
+        list-style-position: outside;
+        text-align:left;
+    }
+    ul li::before{
+        content:"🞂";
+        position: absolute;
+        left:-10px;
+        top:7px
+    }
+    .pfp {
+        border-radius:50%;
+        width:50%
+    }
+    .main {
+        margin:10px;
+        float: left;
+        padding:5px;
+        line-height:175%;
+        width:auto;
+        overflow-wrap: break-word;
+        display:flex;
+        flex-direction:column;
+    }
+    .socials {
+        
+        display:flex;
+        float:left;
+        width:auto;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .socials > div {
+        width:fit-content;
+    }
+    a {
+        color:#eb9ed4
+    }
+    a:visited {
+        color:#eb9ed4
+    }
+    @media screen and (max-width: 900px) {
+        .left {
+        width:auto /* The width is 100%, when the viewport is 800px or smaller */
+      }
+      .container {
+        flex-direction: column;
+      }
+    }
+    </style>
+
+
 <head>
     <title>ash's site :3</title>
 </head>
 <body>
-    <div class="content">
-    <div>
-        <span class="small">hello, my name is </span>
-        <span class="title">ash</span>
+    <div class="background">
     </div>
-</div>
+
+    <div class="container">
+        <div class="left">
+            <img src="assets/ash_icon.png" class="pfp">
+            <h2>ash's domain!</h2>
+            <br>
+            <h3>navigation</h3>
+            <ul>
+                <li>
+                    <a href="#main">main</a>
+                </li>
+                <li>
+                    <a href="#aboutme">about me</a>
+                </li>
+            </ul>
+        </div>
+        <div class="main" id="main">
+            <p>hiii! my name is ash! (or ashley, or ashurii)</p>
+            <p>i'm just some lil kitty on the internet who likes programming n stuff!!!</p>
+            <p>i rly like games and art and stuff</p>
+            <p>here's the links to my socials!</p>
+            <div class="socials">
+                <a href="https://bsky.app/profile/ashurii.xyz">bluesky</a><a href="https://steamcommunity.com/id/giko_arts/">steam</a><a href="https://www.youtube.com/@ash_urii">youtube</a>
+            </div>
+        </div>
+    </div>
     
 </body>
